@@ -1,11 +1,3 @@
-import { Link } from 'react-router-dom';
-
 export default function CatalogPage() {
-    return (
-        <ol>
-            <li>
-                <Link to="/useMount">useMount</Link>
-            </li>
-        </ol>
-    );
+    return <h2>在 url 后拼接 hook 名称访问对应测试页面</h2>;
 }
