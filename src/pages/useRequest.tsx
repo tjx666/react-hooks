@@ -7,15 +7,24 @@ function useRequest<D>(requestFn: () => Promise<D>) {
     const [data, setData] = useState<D | undefined>();
 
     useEffect(() => {
+        let isUnmounted = false;
+
         (async function () {
             try {
-                setData(await requestFn());
+                const _data = await requestFn();
+                setData(_data);
             } catch (error) {
+                if (isUnmounted) return;
                 setError(error);
-            } finally {
-                setLoading(false);
             }
+
+            if (isUnmounted) return;
+            setLoading(false);
         })();
+
+        return () => {
+            isUnmounted = true;
+        };
     }, [requestFn]);
 
     return {
