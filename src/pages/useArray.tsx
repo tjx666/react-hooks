@@ -19,7 +19,7 @@ function useArray<T>(initialArray: T[]): [T[], ArrayActions<T>] {
                 setArray([...array, element]);
             },
             remove(index: number) {
-                setArray([...array].toSplice(index, 1));
+                setArray([...array].toSpliced(index, 1));
             },
             clear() {
                 setArray([]);
